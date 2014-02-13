@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  # delegate :can?, :cannot?, :to => :ability
+  
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -14,6 +16,12 @@ class User < ActiveRecord::Base
     make_admin project
 
     project
+  end
+
+  def can?(action, resource=nil, conditions=nil)
+    # TODO refactor this
+    @ability ||= Ability.new(self, action, resource, conditions)
+    @ability.can? action, resource
   end
 
   private

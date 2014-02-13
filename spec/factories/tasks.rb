@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :task do
     name "MyString"
+    story { FactoryGirl.create(:story) }
   end
 end

@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :story do
     name "MyString"
+    project { FactoryGirl.create :project }
   end
 end

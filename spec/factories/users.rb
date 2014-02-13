@@ -10,5 +10,11 @@ FactoryGirl.define do
     email { FactoryGirl.generate(:user_email) }
     password "password"
     account { FactoryGirl.create(:account) }
+
+    factory :user_without_account do
+      account nil
+    end
   end
+
+
 end

@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :project do
     name "MyString"
+    account { FactoryGirl.create :account }
   end
 end
