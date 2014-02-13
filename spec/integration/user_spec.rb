@@ -15,11 +15,4 @@ describe "User" do
       user.should have_role :admin, project
     end
   end
-
-  describe "add a story" do
-    let(:story) {FactoryGirl.create :story}
-    it "should succeed" do
-      expect {project.stories << story}.to change{project.stories.count}.by 1
-    end
-  end
 end

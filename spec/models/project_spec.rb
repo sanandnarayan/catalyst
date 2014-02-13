@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Project do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:project) { FactoryGirl.create(:project) }
+  let(:story) {FactoryGirl.create :story}
+  it "should have many stories" do
+    expect {project.stories << story}.to change{project.stories.count}.by 1
+  end
 end
