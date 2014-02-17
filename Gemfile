@@ -29,6 +29,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'debugger'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'spork-rails', github: 'sporkrb/spork-rails' # rubygems version not rails 4 compatible
+  gem 'guard-spork'
+  gem 'childprocess'
 end
 group :test do
   gem 'capybara'
