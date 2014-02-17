@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217105921) do
+ActiveRecord::Schema.define(version: 20140217113104) do
 
   create_table "accounts", force: true do |t|
     t.datetime "created_at"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 20140217105921) do
     t.datetime "updated_at"
     t.integer  "estimated_time"
     t.integer  "assigned_to"
+  end
+
+  create_table "timelogs", force: true do |t|
+    t.datetime "from"
+    t.datetime "to"
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

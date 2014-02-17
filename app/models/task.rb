@@ -1,6 +1,7 @@
 class Task < ActiveRecord::Base
   belongs_to :story
   belongs_to :assignee, foreign_key: "assigned_to", :class_name => "User"
+  has_many :timelogs
 
   def estimate(time, user)
     if user.cannot?(:manage, project)  
@@ -16,6 +17,11 @@ class Task < ActiveRecord::Base
     end
     self.assignee = assignee
     self.save!
+  end
+
+  def duration
+    durations = timelogs.map(&:duration)
+    durations.reduce(:+)
   end
   private
   def project
