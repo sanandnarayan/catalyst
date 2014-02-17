@@ -21,17 +21,27 @@ describe User do
 
   context "when mananger" do
     let(:project) {user.add_project("Project 1")}
+    let(:assignee) { FactoryGirl.create :user }
     it "can estimate a task in mins" do
       task.story.project = project
       task.estimate(91, user)
       task.estimated_time.should eq 91
     end
+    it "can assign a task to a user" do
+      task.story.project = project
+      task.assign(assignee, user)
+      task.assignee.should eq assignee
+    end
   end
 
   context "when not a manager" do
+    let(:assignee) { FactoryGirl.create :user }
     it "cannot estimate the tasks" do
       user = FactoryGirl.create :user
       expect { task.estimate(91, user) }.to raise_error(CanCan::AccessDenied)
+    end
+    it "cannot assign a task to some user" do
+      expect { task.assign(assignee, user) }.to raise_error
     end
   end
 end
