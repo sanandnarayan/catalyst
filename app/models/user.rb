@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # delegate :can?, :cannot?, :to => :ability
+  delegate :can?, :cannot?, :to => :ability
   
   rolify
   # Include default devise modules. Others available are:
@@ -18,12 +18,9 @@ class User < ActiveRecord::Base
     project
   end
 
-  def can?(action, resource=nil, conditions=nil)
-    # TODO refactor this
-    @ability ||= Ability.new(self, action, resource, conditions)
-    @ability.can? action, resource
+  def ability
+    @ability ||= Ability.new(self)
   end
-
   private
 
   def make_admin(project)
