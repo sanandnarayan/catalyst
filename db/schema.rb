@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217113104) do
+ActiveRecord::Schema.define(version: 20140218134357) do
 
   create_table "accounts", force: true do |t|
     t.datetime "created_at"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20140217113104) do
   create_table "projects", force: true do |t|
     t.string   "name"
     t.integer  "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rejections", force: true do |t|
+    t.integer  "story_id"
+    t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,11 +43,21 @@ ActiveRecord::Schema.define(version: 20140217113104) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "sprints", force: true do |t|
+    t.integer  "project_id"
+    t.datetime "start"
+    t.datetime "finish"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "stories", force: true do |t|
     t.string   "name"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
+    t.integer  "sprint_id"
   end
 
   create_table "tasks", force: true do |t|
@@ -50,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140217113104) do
     t.datetime "updated_at"
     t.integer  "estimated_time"
     t.integer  "assigned_to"
+    t.string   "state"
   end
 
   create_table "timelogs", force: true do |t|

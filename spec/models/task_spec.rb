@@ -12,6 +12,13 @@ describe Task do
         task.timelogs << Timelog.create(from:from, to:to)
       }.to change{task.timelogs.count}.by(1)
     end
+    it "should be able to change the state from not started to working to done" do
+      task.state.should eq "Not Started"
+      task.start
+      task.state.should eq "In Progress"
+      task.development_done
+      task.state.should eq "Done"
+    end
   end
   it "#duration" do
     from1 = DateTime.now - 1.hours 

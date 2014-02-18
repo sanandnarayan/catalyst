@@ -12,6 +12,7 @@ gem 'cancan'
 gem 'devise'
 gem 'mysql2'
 gem 'rolify'
+gem 'state_machine'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
