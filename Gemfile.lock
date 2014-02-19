@@ -264,6 +264,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mysql2
+  pry
   quiet_assets
   rails (= 4.0.2)
   rails_layout
