@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     project
   end
 
+  def projects
+    Project.all.select { |project| self.can? :read, project }
+  end
+
   def ability
     @ability ||= Ability.new(self)
   end

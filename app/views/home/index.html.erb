@@ -1,1 +1,7 @@
-welcome
+<% @projects.each { |project| %>
+  <div><%= project.name %></div>
+<% } %>
+
+<% if current_user.can? :create, Project  %>
+  <%= link_to "Add Project", new_project_path %>
+<% end %>

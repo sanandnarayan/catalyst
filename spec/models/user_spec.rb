@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   let(:user) { FactoryGirl.create(:user) }
-  let(:project) { FactoryGirl.create(:project) }
+  let(:project) { FactoryGirl.create(:project, name: "Awesome") }
   let(:story) {FactoryGirl.create :story}
   let(:task) {FactoryGirl.create :task}
 
@@ -18,6 +18,28 @@ describe User do
     end
   end
 
+  context "when site admin" do
+    it "#projects" do
+      project = FactoryGirl.create(:project, name: "Awesome")
+      user.add_role :admin
+      user.projects.should eq [project]
+    end
+  end
+
+  context "developer on a project" do
+    it "#projects" do
+      project = FactoryGirl.create(:project, name: "developer")
+      user.add_role :developer, project
+      user.projects.should eq [project]
+    end
+  end
+
+  context "normal user" do
+    it "#projects" do
+      project = FactoryGirl.create(:project, name: "Awesome")
+      user.projects.should eq []
+    end
+  end
 
   context "when mananger" do
     let(:project) {user.add_project("Project 1")}
