@@ -1,11 +1,25 @@
-<%# add navigation links to this file %>
-<% if user_signed_in? %>
-  <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
-<% else %>
-  <li><%= link_to 'Login', new_user_session_path %></li>
-<% end %>
-<% if user_signed_in? %>
-  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-<% else %>
-  <li><%= link_to 'Sign up', new_user_registration_path %></li>
-<% end %>
+<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+  <% if user_signed_in? %>
+    <li>
+      <%= link_to  destroy_user_session_path, :method=>'delete' do %>
+        <i class="icon-off"></i>Logout
+      <%end%>
+    </li>
+    <li>
+      <%= link_to  edit_user_registration_path do%>
+        <i class="icon-cog"></i>Settings
+      <% end %>  
+    </li>
+  <% else %>
+    <li>
+      <%= link_to new_user_session_path do%>
+        <i class="icon-cog"></i>Sign up
+      <% end %>
+    </li>
+    <li>
+    <%= link_to new_user_registration_path do %>
+        <i class="icon-cog"></i>Sign in
+    <% end %>
+    </li>
+  <% end %>
+</ul>
