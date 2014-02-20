@@ -1,0 +1,17 @@
+<%= @project.name %>
+<%= form_for(@story, url: project_stories_path(@project)) do |f| %>
+ <h3>Add Story</h3>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Add Story', :class => 'button right' %>
+<% end %>
+
+<% if @project.stories.count > 0 %>
+Stories
+
+<% @project.stories.each { |story| %>
+  <%= story.name %>
+<% } %>
+<% end %>

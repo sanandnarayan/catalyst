@@ -1,5 +1,5 @@
 <% @projects.each { |project| %>
-  <div><%= project.name %></div>
+  <%= link_to project.name, project_path(project) %>
 <% } %>
 
 <% if current_user.can? :create, Project  %>

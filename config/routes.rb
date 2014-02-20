@@ -1,6 +1,7 @@
 Catalyst::Application.routes.draw do
-  get "projects/new"
+  resources :projects do
+    resources :stories
+  end
   devise_for :users
   root :to => "home#index"
-  resources :projects
 end
