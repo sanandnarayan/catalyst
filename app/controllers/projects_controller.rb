@@ -3,6 +3,11 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def show
+    @project = Project.find(params[:id])
+    @story   = @project.stories.build
+  end
+
   def create
     @project = Project.new(project_params)
 

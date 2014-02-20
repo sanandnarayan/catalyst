@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def projects
+    #TODO find a better way to solve this
     Project.all.select { |project| self.can? :read, project }
   end
 
