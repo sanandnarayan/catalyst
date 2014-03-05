@@ -6,67 +6,13 @@
     </small>
   </h1>
 </div>
-
-
-<% if @project.stories.count > 0 %>
-  <h4>Stories</h4>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="dd" id="nestable">
-        <ol class="dd-list">
-          <% @project.stories.each { |story| %>
-          <li class="dd-item" data-id="11">
-          <div class="dd-handle">
-            <%= story.name %>
-            <span class="sticker">
-              <span class="label label-success arrowed-in">
-                <i class="icon-ok bigger-110"></i>
-              </span>
-            </span>
-          </div>
-          </li>
-        <% } %>
-        </ol>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-
-
 <div class="row">
+  <!-- stories -->
+  <div class="col-sm-6">
+    <%= render 'stories' %>
+  </div>
 
-  <div class="col-xs-12 col-sm-4">
-    <div class="widget-box">
-      <div class="widget-header">
-        <h4>Add Story</h4>
-
-        <div class="widget-toolbar">
-          <a href="#" data-action="collapse">
-            <i class="icon-chevron-up"></i>
-          </a>
-
-          <a href="#" data-action="close">
-            <i class="icon-remove"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="widget-body">
-        <div class="widget-body-inner" style="display: block;">
-          <div class="widget-main">
-            <%= form_for(@story, url: project_stories_path(@project)) do |f| %>
-              <div>
-                <%= f.label :name %>
-                <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
-                <div class="clearfix form-actions">
-                    <%= f.submit 'Add Story', :class => 'btn btn-primary' %>
-                </div>
-              </div>
-            <% end %>
-          </div> <!-- main -->
-      </div><!-- body-inner -->
-    </div> <!-- body -->
-  </div><!-- widget-box -->
+  <div class="col-sm-6">
+    <%= render 'sprints' %>
+  </div>
 </div>
-

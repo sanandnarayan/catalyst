@@ -9,5 +9,6 @@ jQuery ($) ->
     return
 
   $("[data-rel=\"tooltip\"]").tooltip()
-  return
+
+  $("input[name=date-range-picker]").daterangepicker()
 

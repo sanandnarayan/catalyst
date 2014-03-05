@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @story   = @project.stories.build
+    @sprint   = @project.sprints.build
   end
 
   def create
